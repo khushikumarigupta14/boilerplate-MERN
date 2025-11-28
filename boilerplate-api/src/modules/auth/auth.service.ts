@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { env } from '../../config/env';
-import { userService } from '../users/user.service';
+import { userService } from '../users/services/user.service';
 import { APIError } from '../../common/APIError';
-import { IUser } from '../users/user.interface';
+import { IUser } from '../users/interfaces/user.interface';
 
 class AuthService {
     async register(data: IUser) {

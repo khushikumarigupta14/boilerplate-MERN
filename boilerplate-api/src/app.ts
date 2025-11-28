@@ -5,7 +5,7 @@ import swaggerUi from 'swagger-ui-express';
 import { specs } from './docs/swagger';
 import { env } from './config/env';
 import { errorHandler } from './common/errorHandler';
-import { userRoutes } from './modules/users/user.routes';
+import { userRoutes } from './modules/users';
 import { healthRoutes } from './modules/health/health.routes';
 import { authRoutes } from './modules/auth/auth.routes';
 import { productRoutes } from './modules/product/product.routes';

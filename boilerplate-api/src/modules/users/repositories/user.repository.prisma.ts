@@ -1,46 +1,29 @@
-import { IRepository } from '../../../database/repository.interface';
-import { IUser } from '../user.interface';
-import { prisma } from '../../../database/connection';
+import { PrismaClient } from '@prisma/client';
 
-export class UserRepositoryPrisma implements IRepository<IUser> {
-    async create(data: Partial<IUser>): Promise<IUser> {
-        const user = await prisma!.user.create({
-            data: {
-                name: data.name!,
-                email: data.email!,
-                password: data.password!,
-                role: data.role || 'user',
-            },
-        });
-        return user as IUser;
+const prisma = new PrismaClient();
+
+export class UserPrismaRepository {
+    create(data: any) {
+        return prisma.user.create({ data });
     }
 
-    async findById(id: string): Promise<IUser | null> {
-        const user = await prisma!.user.findUnique({ where: { id } });
-        return user as IUser | null;
+    findAll(query: any) {
+        return prisma.user.findMany({ where: query });
     }
 
-    async findOne(query: any): Promise<IUser | null> {
-        const user = await prisma!.user.findFirst({ where: query });
-        return user as IUser | null;
+    findById(id: string) {
+        return prisma.user.findUnique({ where: { id } });
     }
 
-    async findMany(query: any): Promise<IUser[]> {
-        const users = await prisma!.user.findMany({ where: query });
-        return users as IUser[];
+    findOne(query: any) {
+        return prisma.user.findFirst({ where: query });
     }
 
-    async update(id: string, data: Partial<IUser>): Promise<IUser | null> {
-        const user = await prisma!.user.update({ where: { id }, data });
-        return user as IUser | null;
+    update(id: string, data: any) {
+        return prisma.user.update({ where: { id }, data });
     }
 
-    async delete(id: string): Promise<boolean> {
-        await prisma!.user.delete({ where: { id } });
-        return true;
-    }
-
-    async count(query: any): Promise<number> {
-        return await prisma!.user.count({ where: query });
+    delete(id: string) {
+        return prisma.user.delete({ where: { id } });
     }
 }

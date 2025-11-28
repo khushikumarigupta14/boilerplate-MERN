@@ -1,22 +1,9 @@
-import mongoose, { Schema, Document } from 'mongoose';
-import { IUser } from '../user.interface';
+import mongoose from "mongoose";
 
-export interface IUserDoc extends IUser, Document {
-    id: string; // Mongoose virtual id
-}
+const UserSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    password: String,
+});
 
-const UserSchema = new Schema<IUserDoc>(
-    {
-        name: { type: String, required: true },
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true, select: false },
-        role: { type: String, enum: ['user', 'admin'], default: 'user' },
-    },
-    {
-        timestamps: true,
-        toJSON: { virtuals: true },
-        toObject: { virtuals: true },
-    },
-);
-
-export const UserModel = mongoose.model<IUserDoc>('User', UserSchema);
+export const UserModel = mongoose.model("User", UserSchema);

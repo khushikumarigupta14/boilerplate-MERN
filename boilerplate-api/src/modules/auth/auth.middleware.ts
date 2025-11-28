@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { env } from '../../config/env';
 import { APIError } from '../../common/APIError';
-import { userService } from '../users/user.service';
+import { userService } from '../users/services/user.service';
 
 export interface AuthRequest extends Request {
     user?: any;

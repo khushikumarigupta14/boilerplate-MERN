@@ -1,39 +1,27 @@
-import { IRepository } from '../../../database/repository.interface';
-import { IUser } from '../user.interface';
-import { UserModel, IUserDoc } from '../models/user.model.mongoose';
+import { UserModel } from "../models/user.model.mongoose";
 
-export class UserRepositoryMongoose implements IRepository<IUser> {
-    async create(data: Partial<IUser>): Promise<IUser> {
-        const user = await UserModel.create(data);
-        return user.toObject();
+export class UserMongooseRepository {
+    create(data: any) {
+        return UserModel.create(data);
     }
 
-    async findById(id: string): Promise<IUser | null> {
-        const user = await UserModel.findById(id);
-        return user ? user.toObject() : null;
+    findAll(query: any) {
+        return UserModel.find(query);
     }
 
-    async findOne(query: any): Promise<IUser | null> {
-        const user = await UserModel.findOne(query);
-        return user ? user.toObject() : null;
+    findById(id: string) {
+        return UserModel.findById(id);
     }
 
-    async findMany(query: any): Promise<IUser[]> {
-        const users = await UserModel.find(query);
-        return users.map((u) => u.toObject());
+    findOne(query: any) {
+        return UserModel.findOne(query);
     }
 
-    async update(id: string, data: Partial<IUser>): Promise<IUser | null> {
-        const user = await UserModel.findByIdAndUpdate(id, data, { new: true });
-        return user ? user.toObject() : null;
+    update(id: string, data: any) {
+        return UserModel.findByIdAndUpdate(id, data, { new: true });
     }
 
-    async delete(id: string): Promise<boolean> {
-        const result = await UserModel.findByIdAndDelete(id);
-        return !!result;
-    }
-
-    async count(query: any): Promise<number> {
-        return await UserModel.countDocuments(query);
+    delete(id: string) {
+        return UserModel.findByIdAndDelete(id);
     }
 }

@@ -2,6 +2,7 @@
 
 A production-ready Node.js + Express backend boilerplate with support for MongoDB, PostgreSQL, and MySQL.
 
+If you choose to use this boilerplate, please take the time to review the code. Your suggestions for improvements are highly welcome.
 ## Features
 
 - **Multi-Database Support**: Switch between MongoDB (Mongoose), PostgreSQL (Prisma), and MySQL/PostgreSQL (Sequelize) via `.env`.

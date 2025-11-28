@@ -1,5 +1,5 @@
 import { IRepository } from '../../../database/repository.interface';
-import { IUser } from '../user.interface';
+import { IUser } from '../interfaces/user.interface';
 import { UserSequelize } from '../models/user.model.sequelize';
 
 export class UserRepositorySequelize implements IRepository<IUser> {
